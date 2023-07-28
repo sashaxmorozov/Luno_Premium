@@ -1,5 +1,5 @@
-const Binance = require('node-binance-api');
-require('dotenv').config()
+import Binance from 'node-binance-api';
+import {} from 'dotenv/config'
 
 let priceLuno = 0
 let priceBinance = 0
@@ -7,6 +7,7 @@ let exchangeR = 0
 
 
 async function getPairLuno(){
+let luno
 let btcMyrLuno = 0
 const lunoob = await fetch(process.env.LUNO_API)
 luno = await lunoob.json()
@@ -14,18 +15,6 @@ btcMyrLuno = parseFloat(luno.last_trade)
 return btcMyrLuno;
 }
 getPairLuno();
-
-
-async function getBtcUsdBinance(){
-let resBinance = 0
-const binance = new Binance()
-let ticker = await binance.prices();
-resBinance = parseFloat((`${ticker.BTCBUSD}`))
-return resBinance
-
-}
-getBtcUsdBinance();
-
 
 async function getUsdMyr(){
     var myHeaders = new Headers();
@@ -47,9 +36,13 @@ await fetch("https://api.apilayer.com/fixer/convert?to=MYR&from=USD&amount=1", r
   getUsdMyr()
 
 async function getPairBinance(){
-  let btcMyrBinance = 0
-  let exr = 0
-  let btcUsd = 0
+let resBinance = 0
+const binance = new Binance()
+let ticker = await binance.prices();
+resBinance = parseFloat((`${ticker.BTCBUSD}`))
+let btcMyrBinance = 0
+let exr = 0
+let btcUsd = 0
 exr = await getUsdMyr()
 btcUsd = await getBtcUsdBinance()
 btcMyrBinance = (exr * btcUsd)
