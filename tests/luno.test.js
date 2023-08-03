@@ -5,19 +5,11 @@ jest.mock ('../lib/exchange.js', () => ({
     getPairExchange: jest.fn(() => MOCK_ERATE)
 }));
 
-
-
-jest.mock ('../lib/exchange.js', () => ({
-        getPairExchange: jest.fn(() => MOCK_ERATE)
-    }));
-    
-
 beforeEach(() => {
     jest.resetModules(); // reset module mocks before each test to not affect other tests in this file
   });
 
 // we're modifying the fetch method to return these values
-
 
 test("Returns Message for Failed Luno Response", async () => {
     const MOCK_STATUS_CODE = 500

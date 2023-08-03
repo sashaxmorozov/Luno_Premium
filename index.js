@@ -8,7 +8,7 @@ import { getPairBinance } from './lib/binance.js'
 import { getPairLuno } from './lib/luno.js'
 import { getPairExchange } from './lib/exchange.js'
 
-async function output(){
+export default async function output(){
 let priceDiff = 0
 let percDiff = 0
 priceBinance = await getPairBinance()
